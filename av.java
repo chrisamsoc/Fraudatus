@@ -9,6 +9,8 @@ package com.mycompany.fraudatus;
 
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner; 
 import java.util.Vector;
 /**
@@ -19,8 +21,10 @@ public class av {
     
     private String infoPath; private String votePath;
     private Vector<String> candidates = new Vector();
+    private Map<String, Integer> candidatesVotes =new HashMap<>();// define map
     public av(String path)
     {
+        
         this.infoPath = path;
          try {
       File myObj = new File(infoPath);
@@ -39,7 +43,7 @@ public class av {
         }
         //if not line 0, then add data to vector of candidates
         else{
-            this.candidates.add(data);
+            this.candidatesVotes.put(data,0);
         }
         //increment count by 1
         count++;
