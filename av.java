@@ -27,9 +27,10 @@ public class av {
     private String infoPath; //pathway of format file
     private String votePath; //pathway of .csv file
     private Vector<String> candidates = new Vector(); 
-    private Map<String, Integer> candidatesList =new HashMap<>();// define map
+    private Map<String, box> candidatesList =new HashMap<>();// define map
     
     public HashMap<Integer, vote> ballots = new HashMap();
+    
     public av(String path)  
     {
         
@@ -42,6 +43,7 @@ public class av {
       
       //loops through file
       while (myReader.hasNextLine()) {
+        box cand = new box();
         String data = myReader.nextLine();
         //checks if is on pathway file for xlsx file
         if (count == 0)
@@ -51,7 +53,7 @@ public class av {
         }
         //if not line 0, then add data to vector of candidates
         else{
-            this.candidatesList.put(data,0);
+            this.candidatesList.put(data,cand);
         }
         //increment count by 1
         count++;
@@ -66,6 +68,10 @@ public class av {
     }
          
          System.out.println(candidatesList);
+         
+         
+         
+  
     }
     
     
@@ -89,14 +95,13 @@ public class av {
                {
                   String[] values = data.split(",");
                   int ID = Integer.parseInt(values[0]);
-                  vote bal = new vote(ID);
-                  ballots.put(ID,bal);
+                  //accessing 1st choice candidate box and adding ballot to it, element 1 means first choice
+                  //then adding the values array to to the hashmap as a ballot entry
+                  (candidatesList.get(values[1])).add(values);
+                
                   
-                  for (int i = 1; i < values.length;i++)
-                  {
-                     
-                      bal.add(values[i]);
-                  }
+                  
+                  System.out.println((candidatesList.get(values[1])).choice(ID, 0));
                }
                count++;
               }
@@ -104,9 +109,7 @@ public class av {
       System.out.println("An error occurred.");
     }
         
-        System.out.println("===============");
-        //notice how the ballot hashmap is used to access an object
-        System.out.println((ballots.get(3)).access(2));
+     
         
     }
     
