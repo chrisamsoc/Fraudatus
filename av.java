@@ -18,18 +18,22 @@ import java.util.ArrayList;
 /**
  *
  * @author chris
+ * 
+ * this class shall manage the voting counting
  */
+
+//definition of av class
 public class av {
     
     //
-    private ArrayList<String> votes = new ArrayList();
+   
     
     private String infoPath; //pathway of format file
     private String votePath; //pathway of .csv file
-    private Vector<String> candidates = new Vector(); 
+    
     private Map<String, box> candidatesList =new HashMap<>();// define map
     
-    public HashMap<Integer, vote> ballots = new HashMap();
+   
     
     public av(String path)  
     {
@@ -100,7 +104,9 @@ public class av {
                   (candidatesList.get(values[1])).add(values);
                 
                   
-                  
+                  //accessing the first choice of current ballot
+                  //done by first specifing which candidate ballot belongs to, then inputing current ID, 
+                  //and 0 to represent first element meaning first choice
                   System.out.println((candidatesList.get(values[1])).choice(ID, 0));
                }
                count++;

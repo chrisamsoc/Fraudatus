@@ -4,10 +4,9 @@
  */
 package com.mycompany.fraudatus;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+
 import java.util.HashMap;
-import java.util.Scanner;
+
 
 /**
  *
