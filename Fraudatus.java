@@ -32,8 +32,9 @@ public class Fraudatus {
         Scanner read = new Scanner(System.in);
         System.out.println("Please input infopath:");
         String infopath = read.nextLine();
-        
-        av COUNT = new av(infopath);
+        System.out.println(infopath);
+        av cnt = new av(infopath);
+        cnt.count();
     }
     
     
@@ -44,23 +45,7 @@ public class Fraudatus {
         System.out.print("Pathway\nCandidate Names");
         
     }
-    public static String[] exert(String[] candidates,String pathway)
-    {
-        String[] a = {};
-          try {
-      File myObj = new File(pathway);
-      Scanner myReader = new Scanner(myObj);
-      while (myReader.hasNextLine()) {
-        String data = myReader.nextLine();
-        System.out.println(data);
-      }
-      myReader.close();
-    } catch (FileNotFoundException e) {
-      System.out.println("An error occurred.");
-      e.printStackTrace();
-    }
-        return a;
-    }
+    
 }
 
 
