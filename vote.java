@@ -4,21 +4,24 @@
  */
 package com.mycompany.fraudatus;
 
-import java.util.Map;
+
 import java.util.ArrayList;
-import java.util.Vector;
+
 /**
  *
  * @author chris
+ * 
+ * this class is for the individual ballot
  */
 public class vote {
     
-   
+   //defines rec list to contain mutable array of order of candidates selected
     private ArrayList<String> rec = new ArrayList();
+    //id var to identity ballot
     private int ID;
     
     
-    
+    //constructor
     public vote(int ID)
     {
         
@@ -29,7 +32,7 @@ public class vote {
     
     
   
-    
+    //change an element within the list
     public void change(int element,String Candidate)
     {
         rec.set(element,Candidate);
