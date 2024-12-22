@@ -67,6 +67,8 @@ public class av {
         
     
       }
+      
+      
       //close reader
       myReader.close();
     } catch (FileNotFoundException e) {
@@ -122,8 +124,8 @@ public class av {
                count++;
               }
             //prints out if majority is achieved
-          System.out.print(this.checkMajority()+" winner of majority");
-            
+          
+            System.out.println((checkMajority())[1]+" aa");
               
         }catch (FileNotFoundException e) {
       System.out.println("An error occurred.");
@@ -134,8 +136,10 @@ public class av {
     }
     
     //checkMajority method checks to see if candidates has a majority
-    public String checkMajority()
+    public ArrayList<String> checkMajority()
     {
+        
+        this.voteNumbers.clear(); // clears the map before using it again
         //default is n.a meaning not applicatble
         String winner = "n.a";
         //total votes
@@ -143,21 +147,48 @@ public class av {
         //loops through to calculate total votes
         for (String key :candidatesList.keySet())
         {
-          totalVotes += (candidatesList.get(key)).getVotes();
+          int voteNumber = (candidatesList.get(key)).getVotes();
+          totalVotes += voteNumber;
+          this.voteNumbers.put(key,voteNumber);
         }
-        
+        int min = totalVotes; //used to determine which value is the lowest
+        String minName = "";
         for (String key :candidatesList.keySet())
         {
-            //percentage votes is calculated by dividing candidate votes with total votes
-          double percentageVotes = ((candidatesList.get(key)).getVotes())/(double) totalVotes;
+          
+          int numberVotes = ((candidatesList.get(key)).getVotes());
+          //percentage votes is calculated by dividing candidate votes with total votes
+          double percentageVotes = numberVotes/(double) totalVotes;
+          
+          //check to see if a new minimum number of votes exists (per candidate)
+          if (numberVotes < min){ min = numberVotes; minName =key;}
+          
           //if percentage of  votes is greater or equal to 51%, then winner
-          if (percentageVotes >= 0.51)
-          {
-              return key;
-          }
+          if (percentageVotes >= 0.51){winner = key;}
+          
         }
-        return winner;
+        
+        String[] results = {winner,minName};
+        return results; //next time, modify to include multiple candidates 
     }
+    
+    
+    public void round()
+    {
+        //majority varr
+        ArrayList<String> majority = checkMajority();
+        if((majority.get(0)).equals("n.a"))
+        {
+            System.out.println(majority);
+        }
+        else
+        {
+            
+        }
+    }
+    
+    
+    
     
 }
 //from data collected in count, create 

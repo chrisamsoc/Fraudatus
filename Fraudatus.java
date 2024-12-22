@@ -47,6 +47,7 @@ public class Fraudatus {
         av cnt = new av(infopath);
         //calling count method within cnt object (of class av)
         cnt.count();
+        
     }
     
     
