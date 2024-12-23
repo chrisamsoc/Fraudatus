@@ -124,8 +124,8 @@ public class av {
                count++;
               }
             //prints out if majority is achieved
-          
-            System.out.println((checkMajority())[1]+" aa");
+            
+            
               
         }catch (FileNotFoundException e) {
       System.out.println("An error occurred.");
@@ -136,8 +136,10 @@ public class av {
     }
     
     //checkMajority method checks to see if candidates has a majority
-    public ArrayList<String> checkMajority()
+    public Object[] checkMajority()
     {
+        //this function shall check for a majority, it will also output at the beggining of the array the candidatges with least votes
+        //last element shall contain the winner
         
         this.voteNumbers.clear(); // clears the map before using it again
         //default is n.a meaning not applicatble
@@ -152,38 +154,50 @@ public class av {
           this.voteNumbers.put(key,voteNumber);
         }
         int min = totalVotes; //used to determine which value is the lowest
-        String minName = "";
+        ArrayList<String> minName = new ArrayList();
         for (String key :candidatesList.keySet())
         {
           
           int numberVotes = ((candidatesList.get(key)).getVotes());
           //percentage votes is calculated by dividing candidate votes with total votes
           double percentageVotes = numberVotes/(double) totalVotes;
-          
+          //check to see if another key equal min 
+          if (numberVotes == min){ minName.add(key); }
           //check to see if a new minimum number of votes exists (per candidate)
-          if (numberVotes < min){ min = numberVotes; minName =key;}
+          if (numberVotes < min){ min = numberVotes; minName.clear(); minName.add(key);}
+          
+          
           
           //if percentage of  votes is greater or equal to 51%, then winner
           if (percentageVotes >= 0.51){winner = key;}
           
         }
+        //adding winner name to list
+        minName.add(winner);
         
-        String[] results = {winner,minName};
-        return results; //next time, modify to include multiple candidates 
+         // Convert ArrayList to array
+        Object[] conclusion = minName.toArray();
+        return conclusion;
     }
     
     
     public void round()
     {
         //majority varr
-        ArrayList<String> majority = checkMajority();
-        if((majority.get(0)).equals("n.a"))
+       Object[] majority = checkMajority();
+       int lastElement = majority.length;
+        if((majority[lastElement-1]).equals("n.a"))
         {
-            System.out.println(majority);
+            System.out.println("no majority");
         }
         else
         {
-            
+            System.out.println(majority[lastElement-1]+" has a majority");
+        }
+        System.out.println("leasts votes");
+        for (int i = 0; i <(lastElement-1);i++)
+        {
+            System.out.println(majority[i]);
         }
     }
     

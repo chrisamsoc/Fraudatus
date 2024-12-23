@@ -47,6 +47,8 @@ public class Fraudatus {
         av cnt = new av(infopath);
         //calling count method within cnt object (of class av)
         cnt.count();
+        //calling round method to conduct a round of voting
+        cnt.round();
         
     }
     
