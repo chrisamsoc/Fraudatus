@@ -107,7 +107,9 @@ public class av {
                    //splits data based on commas and sets splits to an array
                   String[] values = data.split(",");
                   //takes values 
-                  int ID = Integer.parseInt(values[0]);
+                  
+                 int ID = Integer.parseInt(values[0]);
+                 
                   //accessing 1st choice candidate box and adding ballot to it, element 1 means first choice
                   //then adding the values array to to the hashmap as a ballot entry
                   (candidatesList.get(values[1])).add(values);
@@ -230,6 +232,35 @@ public class av {
        
        //remove all ballots from loser
        (candidatesList.get(oldName)).deleteBallots();
+       //removes this candidate from hashMap
+       candidatesList.remove(oldName);
+    }
+    
+    public void display()
+    {
+        //option 1
+        for (int key : (candidatesList.get("Option1")).ballots.keySet())
+       {
+         String aa = (candidatesList.get("Option1")).choice(key,0);
+         System.out.println(aa);
+       }
+        
+          //option 2
+        for (int key : (candidatesList.get("Option2")).ballots.keySet())
+       {
+         String aa = (candidatesList.get("Option2")).choice(key,0);
+         System.out.println(aa);
+       }
+        
+          //option 4
+        for (int key : (candidatesList.get("Option4")).ballots.keySet())
+       {
+         String aa = (candidatesList.get("Option4")).choice(key,0);
+         System.out.println(aa);
+       }
+        
+        
+        
     }
     
     

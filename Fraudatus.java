@@ -50,7 +50,7 @@ public class Fraudatus {
         //calling round method to conduct a round of voting
         cnt.round();
         
-        //cnt.count();
+        cnt.display();
         
     }
     
