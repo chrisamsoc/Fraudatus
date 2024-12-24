@@ -136,7 +136,7 @@ public class av {
     }
     
     //checkMajority method checks to see if candidates has a majority
-    public Object[] checkMajority()
+    public String[] checkMajority()
     {
         //this function shall check for a majority, it will also output at the beggining of the array the candidatges with least votes
         //last element shall contain the winner
@@ -176,19 +176,27 @@ public class av {
         minName.add(winner);
         
          // Convert ArrayList to array
-        Object[] conclusion = minName.toArray();
+        String[] conclusion = minName.toArray(String[]::new);
         return conclusion;
     }
     
     
-    public void round()
+    public String round()
     {
         //majority varr
-       Object[] majority = checkMajority();
+       String[] majority = checkMajority();
        int lastElement = majority.length;
+       
+      
         if((majority[lastElement-1]).equals("n.a"))
         {
             System.out.println("no majority");
+            for (int i = 0; i <(lastElement-1);i++)
+            {
+                //reshuffles the ballots
+              reshuffle(majority[i]);
+            }
+            
         }
         else
         {
@@ -199,10 +207,30 @@ public class av {
         {
             System.out.println(majority[i]);
         }
+        //returns majority winner/status
+       return  majority[lastElement-1];
     }
     
     
     
+    public void reshuffle(String oldName)
+    {
+        //removes first ballots from list
+       (candidatesList.get(oldName)).removeFirst();
+       //copy previous key values to new box
+       
+       
+       for (int key : (candidatesList.get(oldName)).ballots.keySet())
+       {
+           //getting newName
+           String newName= (candidatesList.get(oldName)).choice(key,0);
+          //specifiying new box ||  inputing new key value|||  key (ID), old box ||
+           (candidatesList.get(newName)).ballots.put(key,(candidatesList.get(oldName)).ballots.get(key));
+       }
+       
+       //remove all ballots from loser
+       (candidatesList.get(oldName)).deleteBallots();
+    }
+    
     
 }
-//from data collected in count, create 

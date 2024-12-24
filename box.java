@@ -6,7 +6,8 @@ package com.mycompany.fraudatus;
 
 
 import java.util.HashMap;
-
+import java.util.ArrayList;
+import java.util.Set;
 
 /**
  *
@@ -63,6 +64,32 @@ public class box {
         return currentVotes;
     }
     
+    //remove first choice
     
+    public void removeFirst()
+    {
+        for(int key :ballots.keySet())
+        {
+            (ballots.get(key)).remove(0);
+            //checks to see if a ballot has no candidates left
+            if ((ballots.get(key).getSize()) ==0  )
+            {
+                //removes blank ballot
+                 ballots.remove(key);
+            }
+        }
+        
+        
+    }
+    //deletes all ballots from box
+    public void deleteBallots()
+    {
+        ballots.clear();
+    }
+    
+    
+   
+    
+ 
     
 }

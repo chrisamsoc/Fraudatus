@@ -55,5 +55,10 @@ public class vote {
         return rec.get(element);
     }
     
+    public int getSize()
+    {
+        return rec.size();
+    }
+    
     
 }
