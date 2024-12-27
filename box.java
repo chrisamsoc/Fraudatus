@@ -19,7 +19,7 @@ public class box {
     //defines the ballots hashmap that shall contain the ballots for the candidate
     public HashMap<Integer, vote> ballots = new HashMap();
     //records how many primary place votes the candidate has, currently
-    private int currentVotes;
+    public int currentVotes;
 //no need to have anything in the constructor, check if possible to delete later    
     public box()
     {
@@ -68,23 +68,49 @@ public class box {
     
     public void removeFirst()
     {
+        
+         
+       
+        ArrayList<Integer> blankKeys = new ArrayList();
+        
         for(int key :ballots.keySet())
         {
+            
             (ballots.get(key)).remove(0);
             //checks to see if a ballot has no candidates left
             if ((ballots.get(key).getSize()) ==0  )
             {
                 //removes blank ballot
-                 ballots.remove(key);
+                 blankKeys.add(key);
+                
             }
+         
+            
         }
         
+        for (int key : blankKeys) {
+            ballots.remove(key);}
+
+
+      
+   
+        
+        
+      
         
     }
     //deletes all ballots from box
     public void deleteBallots()
     {
         ballots.clear();
+    }
+    
+    
+    public void idiot()
+    {
+        System.out.println("size time =======================");
+        System.out.println((ballots.get(7)).getSize());
+                
     }
     
     

@@ -45,12 +45,22 @@ public class Fraudatus {
         System.out.println(infopath);
         //defines new instance of av class as cnt (is an object)
         av cnt = new av(infopath);
+        //first round
         //calling count method within cnt object (of class av)
         cnt.count();
         //calling round method to conduct a round of voting
-        cnt.round();
-        
+        cnt.round(); //2nd round
+        //display new votes
         cnt.display();
+        System.out.println("/////////////////////");
+        cnt.round(); //2nd round
+        //display new votes
+        cnt.display();
+        
+        
+        
+        
+      
         
     }
     

@@ -32,6 +32,7 @@ public class av {
     
     private Map<String, box> candidatesList =new HashMap<>();// definition of hashmap that shall store the box objects of each candidate
     public Map<String,Integer> voteNumbers = new HashMap<>();   
+    public ArrayList<String> rejectKeys = new ArrayList();
     //constructor
     public av(String path)  
     {
@@ -154,7 +155,9 @@ public class av {
           int voteNumber = (candidatesList.get(key)).getVotes();
           totalVotes += voteNumber;
           this.voteNumbers.put(key,voteNumber);
+           System.out.printf("Votes for candidate %s is %d\n",key,voteNumber);
         }
+        System.out.printf("Total votes is %d\n",totalVotes);
         int min = totalVotes; //used to determine which value is the lowest
         ArrayList<String> minName = new ArrayList();
         for (String key :candidatesList.keySet())
@@ -171,7 +174,7 @@ public class av {
           
           
           //if percentage of  votes is greater or equal to 51%, then winner
-          if (percentageVotes >= 0.51){winner = key;}
+          if (percentageVotes >= 0.55){winner = key; System.out.println("Majority of "+ winner);}
           
         }
         //adding winner name to list
@@ -203,11 +206,13 @@ public class av {
         else
         {
             System.out.println(majority[lastElement-1]+" has a majority");
+            System.out.println("==========");
         }
         System.out.println("leasts votes");
         for (int i = 0; i <(lastElement-1);i++)
         {
             System.out.println(majority[i]);
+            System.out.println("==========");
         }
         //returns majority winner/status
        return  majority[lastElement-1];
@@ -217,17 +222,35 @@ public class av {
     
     public void reshuffle(String oldName)
     {
-        //removes first ballots from list
+      
        (candidatesList.get(oldName)).removeFirst();
-       //copy previous key values to new box
-       
+      
        
        for (int key : (candidatesList.get(oldName)).ballots.keySet())
        {
            //getting newName
+          
            String newName= (candidatesList.get(oldName)).choice(key,0);
           //specifiying new box ||  inputing new key value|||  key (ID), old box ||
+          
+          try{
+              //checks to see if new name actually exists
+              int a = (candidatesList.get(newName)).currentVotes;
+          }catch(NullPointerException e)
+          {
+              try{
+              newName= (candidatesList.get(oldName)).choice(key,1);
+              }catch(IndexOutOfBoundsException f)
+              {
+                  continue;
+              }
+          }
+          
+          
            (candidatesList.get(newName)).ballots.put(key,(candidatesList.get(oldName)).ballots.get(key));
+           (candidatesList.get(newName)).currentVotes++;
+           //takes into account if candidate has already been removed
+        
        }
        
        //remove all ballots from loser
@@ -238,29 +261,47 @@ public class av {
     
     public void display()
     {
+        
+        try{
         //option 1
         for (int key : (candidatesList.get("Option1")).ballots.keySet())
        {
          String aa = (candidatesList.get("Option1")).choice(key,0);
          System.out.println(aa);
-       }
-        
+       }}catch(Exception e){}
+        try{
           //option 2
         for (int key : (candidatesList.get("Option2")).ballots.keySet())
        {
          String aa = (candidatesList.get("Option2")).choice(key,0);
          System.out.println(aa);
-       }
+       }}catch(Exception e){}
         
-          //option 4
+       
+        try{     //option 3
+        for (int key : (candidatesList.get("Option3")).ballots.keySet())
+       {
+         String aa = (candidatesList.get("Option3")).choice(key,0);
+         System.out.println(aa);
+       }}catch(Exception e){}
+        
+         try{ //option 4
         for (int key : (candidatesList.get("Option4")).ballots.keySet())
        {
          String aa = (candidatesList.get("Option4")).choice(key,0);
          System.out.println(aa);
-       }
+       }} catch(Exception e){}
+        
+     
         
         
         
+    }
+    
+    public void mamamia()
+    {
+       (candidatesList.get("Option1")).idiot();
+            
     }
     
     
