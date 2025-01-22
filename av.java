@@ -92,7 +92,7 @@ public class av {
         
         try{
             //change pathway to whatever user inputs, eventually
-            File voteSheet = new File("C:\\Users\\chris\\Downloads\\Voting.csv");
+            File voteSheet = new File(votePath);
             Scanner readLine = new Scanner(voteSheet);
             //count var is to be used to ensure that file is not being read on line 0
             int count = 0;
@@ -173,7 +173,7 @@ public class av {
           
           
           
-          //if percentage of  votes is greater or equal to 51%, then winner
+          //if percentage of  votes is greater or equal to 55%, then winner
           if (percentageVotes >= 0.55){winner = key; System.out.println("Majority of "+ winner);}
           
         }
@@ -238,12 +238,16 @@ public class av {
               int a = (candidatesList.get(newName)).currentVotes;
           }catch(NullPointerException e)
           {
+              System.out.println("eee");
               try{
               newName= (candidatesList.get(oldName)).choice(key,1);
               }catch(IndexOutOfBoundsException f)
               {
+                  System.out.println("fff");
                   continue;
               }
+              
+              
           }
           
           

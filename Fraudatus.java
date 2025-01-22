@@ -49,13 +49,17 @@ public class Fraudatus {
         //calling count method within cnt object (of class av)
         cnt.count();
         //calling round method to conduct a round of voting
-        cnt.round(); //2nd round
+       String majority = cnt.round(); //2nd round
         //display new votes
-        cnt.display();
-        System.out.println("/////////////////////");
-        cnt.round(); //2nd round
-        //display new votes
-        cnt.display();
+         cnt.display();
+         
+        while (majority.equals("n.a"))
+        {
+            majority = cnt.round();
+            cnt.display();
+        }
+        System.out.println("==========================");
+        System.out.printf("%s has a majority",majority);
         
         
         
